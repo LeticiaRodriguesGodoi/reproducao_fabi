@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reprodução Sexuada e Assexuada - 8º Ano</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilo para a aba ativa */
+        .tab-active {
+            @apply bg-blue-600 text-white shadow-md;
+        }
+        /* Estilo para esconder seções */
+        .hidden-section {
+            display: none;
+        }
+        /* Estilo para o hover dos botões de aba */
+        .tab-button:hover:not(.tab-active) {
+            @apply bg-gray-300;
+        }
+        /* Estilos específicos para o jogo de Quiz */
+        .quiz-game-option-button {
+            @apply px-6 py-3 rounded-lg text-lg font-semibold text-gray-800 bg-gray-100 border-2 border-gray-200 cursor-pointer transition duration-200 ease-in-out;
+        }
+        .quiz-game-option-button:hover:not(.disabled) {
+            @apply bg-gray-200 border-gray-300;
+        }
+        .quiz-game-option-button.correct {
+            @apply bg-green-200 text-green-800 border-green-500;
+        }
+        .quiz-game-option-button.incorrect {
+            @apply bg-red-200 text-red-800 border-red-500;
+        }
+        .quiz-game-option-button.disabled {
+            @apply opacity-70 cursor-not-allowed;
+        }
+        .game-message {
+            @apply p-5 rounded-lg text-center font-bold text-xl mb-6 shadow-md; /* Estilo aprimorado para a mensagem do jogo */
+            animation: fadeIn 0.5s ease-out; /* Animação de fade-in */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex flex-col items-center p-4 sm:p-6">
+    <div class="bg-white p-6 rounded-3xl shadow-2xl w-full max-w-5xl mb-8 border border-gray-200">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-800 mb-6 text-center tracking-tight">Tipos de Reprodução: Sexuada e Assexuada</h1>
+
+        <!-- Navegação por abas -->
+        <nav class="flex flex-wrap justify-center gap-2 mb-8 bg-gray-100 rounded-xl p-2 shadow-inner">
+            <button id="introTab" class="tab-button flex-1 min-w-[120px] px-6 py-3 rounded-xl text-lg font-semibold text-gray-700 transition duration-300 ease-in-out tab-active">Introdução</button>
+            <button id="quizTab" class="tab-button flex-1 min-w-[120px] px-6 py-3 rounded-xl text-lg font-semibold text-gray-700 transition duration-300 ease-in-out">Exercícios</button>
+            <button id="gameTab" class="tab-button flex-1 min-w-[120px] px-6 py-3 rounded-xl text-lg font-semibold text-gray-700 transition duration-300 ease-in-out">Jogo</button>
+            <button id="mindMapTab" class="tab-button flex-1 min-w-[120px] px-6 py-3 rounded-xl text-lg font-semibold text-gray-700 transition duration-300 ease-in-out">Mapa Mental</button>
+        </nav>
+
+        <!-- Seção de Introdução -->
+        <section id="introduction" class="content-section p-4 bg-white rounded-xl shadow-inner border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 pb-2 border-blue-200">Entendendo a Reprodução</h2>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+                A <strong>reprodução</strong> é um processo fundamental para a continuidade da vida, permitindo que os seres vivos gerem descendentes. Existem duas formas principais de reprodução: a <strong>sexuada</strong> e a <strong>assexuada</strong>, cada uma com suas particularidades, vantagens e desvantagens.
+            </p>
+
+            <!-- Reprodução Sexuada -->
+            <div class="bg-blue-50 p-5 rounded-xl shadow-md mb-6 flex flex-col sm:flex-row items-center sm:items-start border border-blue-200">
+                <img src="sexuada.png" alt="[Image of Reprodução Sexuada]" class="w-full sm:w-64 h-auto rounded-lg mb-4 sm:mb-0 sm:mr-6 object-cover shadow-sm border border-blue-300">
+                <div>
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">1. Reprodução Sexuada</h3>
+                    <p class="text-gray-700 mb-2 leading-relaxed">
+                        A <strong>reprodução sexuada</strong> envolve a participação de <strong>dois genitores</strong> (pai e mãe) e a fusão de células reprodutoras especiais, chamadas <strong>gametas</strong> (óvulo e espermatozoide). Esse processo é conhecido como <strong>fecundação</strong>.
+                    </p>
+                    <p class="text-gray-700 mb-2 leading-relaxed">
+                        A principal vantagem da reprodução sexuada é a <strong>variabilidade genética</strong>. Como os descendentes recebem material genético de ambos os pais, eles são geneticamente diferentes entre si e de seus genitores. Essa diversidade é crucial para a adaptação das espécies a mudanças no ambiente.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Exemplos: A maioria dos animais (incluindo humanos), plantas com flores (que se reproduzem por sementes) e fungos.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Reprodução Assexuada -->
+            <div class="bg-green-50 p-5 rounded-xl shadow-md mb-6 flex flex-col sm:flex-row items-center sm:items-start border border-green-200">
+                <img src="assexuada.png" alt="[Image of Reprodução Assexuada]" class="w-full sm:w-64 h-auto rounded-lg mb-4 sm:mb-0 sm:mr-6 object-cover shadow-sm border border-green-300">
+                <div>
+                    <h3 class="text-xl font-semibold text-green-800 mb-2">2. Reprodução Assexuada</h3>
+                    <p class="text-gray-700 mb-2 leading-relaxed">
+                        Na <strong>reprodução assexuada</strong>, um <strong>único genitor</strong> é capaz de gerar descendentes. Não há fusão de gametas. Os descendentes são geneticamente <strong>idênticos</strong> ao genitor, sendo considerados <strong>clones</strong>.
+                    </p>
+                    <p class="text-gray-700 mb-2 leading-relaxed">
+                        A principal vantagem é a <strong>rapidez</strong> e a <strong>simplicidade</strong> do processo, permitindo que um organismo se reproduza rapidamente em condições favoráveis. A desvantagem é a falta de variabilidade genética, o que pode tornar a espécie mais vulnerável a doenças ou mudanças ambientais.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed">
+                        Exemplos: Bactérias (<strong>bipartição</strong>), leveduras (<strong>brotamento</strong>), estrelas-do-mar (<strong>fragmentação</strong>), plantas (<strong>estacas, rizomas</strong>), e algumas espécies de fungos e protozoários.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-yellow-50 p-5 rounded-xl shadow-md mb-6 border border-yellow-200">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4 border-b-2 pb-2 border-yellow-200">Principais Diferenças:</h3>
+                <ul class="list-disc list-inside text-gray-700 space-y-3">
+                    <li>
+                        <strong>Número de Genitores:</strong>
+                        <ul>
+                            <li>Na <strong>reprodução assexuada</strong>, apenas <strong>um genitor</strong> é necessário para gerar novos indivíduos.</li>
+                            <li>Na <strong>reprodução sexuada</strong>, geralmente são necessários <strong>dois genitores</strong> (macho e fêmea) para a formação de descendentes.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Gametas:</strong>
+                        <ul>
+                            <li>A reprodução <strong>assexuada não envolve a fusão de gametas</strong> (células sexuais como óvulos e espermatozoides).</li>
+                            <li>A reprodução <strong>sexuada envolve a fusão de gametas</strong>, um processo chamado <strong>fecundação</strong>.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Variabilidade Genética:</strong>
+                        <ul>
+                            <li>Na reprodução <strong>assexuada</strong>, os descendentes são geneticamente <strong>idênticos</strong> ao genitor, ou seja, são <strong>clones</strong>. Isso resulta em <strong>baixa ou nula variabilidade genética</strong>.</li>
+                            <li>Na reprodução <strong>sexuada</strong>, a combinação do material genético de dois genitores resulta em descendentes geneticamente <strong>diferentes</strong> entre si e de seus pais, promovendo <strong>alta variabilidade genética</strong>.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>Velocidade:</strong>
+                        <ul>
+                            <li>A reprodução <strong>assexuada</strong> é geralmente um processo <strong>rápido</strong> e eficiente, permitindo uma rápida colonização de ambientes favoráveis.</li>
+                            <li>A reprodução <strong>sexuada</strong> é, em geral, um processo <strong>mais lento</strong> e complexo, envolvendo etapas como a formação de gametas, fecundação e desenvolvimento.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Seção de Exercícios -->
+        <section id="quiz" class="content-section p-4 hidden-section bg-white rounded-xl shadow-inner border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 pb-2 border-blue-200">Exercícios sobre Reprodução</h2>
+            <form id="quizForm" class="space-y-6">
+                <!-- Perguntas serão injetadas aqui pelo JavaScript -->
+            </form>
+            <button id="submitQuizBtn" class="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                Verificar Respostas
+            </button>
+
+            <!-- Área de resultados -->
+            <div id="quizResults" class="mt-8 p-4 bg-gray-50 rounded-xl border border-gray-200 hidden-section shadow-inner">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Seu Resultado: <span id="score" class="text-blue-600"></span></h3>
+                <div id="answersFeedback" class="space-y-4">
+                    <!-- Feedback das respostas será injetado aqui -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Jogo (Novo Quiz de Múltipla Escolha) -->
+        <section id="game" class="content-section p-4 bg-white rounded-xl shadow-inner border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 pb-2 border-blue-200">Jogo: Quiz Rápido!</h2>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+                Responda às perguntas de múltipla escolha para testar seus conhecimentos sobre reprodução.
+            </p>
+
+            <!-- Mensagem do jogo -->
+            <div id="gameMessage" class="game-message hidden"></div>
+
+            <div id="quizGameContainer" class="flex flex-col items-center justify-center space-y-6 p-4">
+                <div id="quizGameQuestion" class="text-xl font-bold text-gray-900 text-center mb-4">
+                    <!-- Pergunta será injetada aqui -->
+                </div>
+                <div id="quizGameImageContainer" class="mb-4">
+                    <!-- Imagem da pergunta será injetada aqui -->
+                </div>
+                <div id="quizGameOptions" class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-lg">
+                    <!-- Opções de resposta serão injetadas aqui -->
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <p class="text-xl font-semibold text-gray-800 mb-4">
+                    Acertos: <span id="quizGameScore" class="text-blue-600">0</span> |
+                    Erros: <span id="quizGameIncorrectAnswers" class="text-red-600">0</span>
+                </p>
+                <p class="text-xl font-semibold text-gray-800 mb-4">
+                    Total de Perguntas: <span id="quizGameTotalQuestions" class="text-blue-600"></span>
+                </p>
+                <button id="resetGameBtn" class="px-8 py-3 bg-red-600 text-white font-bold rounded-lg shadow-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-300 ease-in-out transform hover:scale-105 hidden">
+                    Reiniciar Jogo
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção de Mapa Mental -->
+        <section id="mindMap" class="content-section p-4 hidden-section bg-white rounded-xl shadow-inner border border-gray-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b-2 pb-2 border-blue-200">Mapa Mental: Reprodução Sexuada e Assexuada</h2>
+            <p class="text-gray-700 mb-6 leading-relaxed">
+                Este mapa mental resume os conceitos-chave sobre os tipos de reprodução, ajudando a organizar as informações de forma visual e hierárquica para facilitar a revisão.
+            </p>
+            <div class="flex flex-col items-center p-6 rounded-xl shadow-inner text-gray-800 border border-gray-200 bg-gray-50">
+
+                <!-- Nó Central: REPRODUÇÃO -->
+                <div class="bg-blue-600 text-white p-4 rounded-full shadow-lg text-xl font-bold mb-8 transform hover:scale-105 transition duration-300 ease-in-out">
+                    REPRODUÇÃO
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-8 w-full">
+
+                    <!-- Ramo: ASSEXUADA -->
+                    <div class="flex flex-col items-center flex-1 min-w-[300px] bg-green-100 p-6 rounded-xl shadow-md border border-green-300 transform hover:scale-105 transition duration-300 ease-in-out">
+                        <div class="bg-green-600 text-white p-3 rounded-full shadow-lg text-lg font-semibold mb-4">
+                            1. ASSEXUADA
+                        </div>
+                        <ul class="text-gray-800 text-base list-none space-y-2 text-center">
+                            <li>• <strong>Um único genitor</strong></li>
+                            <li>• <strong>Não envolve gametas</strong></li>
+                            <li>• Descendentes: <strong>Clones</strong> (idênticos)</li>
+                            <li class="font-bold mt-4">Vantagens:</li>
+                            <li>• Rapidez</li>
+                            <li>• Simplicidade</li>
+                            <li class="font-bold mt-4">Desvantagens:</li>
+                            <li>• Baixa/Nula variabilidade genética</li>
+                            <li class="font-bold mt-4">Exemplos:</li>
+                            <li>• Bipartição (bactérias)</li>
+                            <li>• Brotamento (leveduras)</li>
+                            <li>• Fragmentação (estrelas-do-mar)</li>
+                            <li>• Reprodução Vegetativa (plantas)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Ramo: SEXUADA -->
+                    <div class="flex flex-col items-center flex-1 min-w-[300px] bg-purple-100 p-6 rounded-xl shadow-md border border-purple-300 transform hover:scale-105 transition duration-300 ease-in-out">
+                        <div class="bg-purple-600 text-white p-3 rounded-full shadow-lg text-lg font-semibold mb-4">
+                            2. SEXUADA
+                        </div>
+                        <ul class="text-gray-800 text-base list-none space-y-2 text-center">
+                            <li>• Geralmente <strong>dois genitores</strong></li>
+                            <li>• <strong>Envolve fusão de gametas</strong> (fecundação)</li>
+                            <li>• Descendentes: <strong>Geneticamente diferentes</strong></li>
+                            <li class="font-bold mt-4">Vantagens:</li>
+                            <li>• Alta variabilidade genética</li>
+                            <li class="font-bold mt-4">Desvantagens:</li>
+                            <li>• Geralmente mais lenta e complexa</li>
+                            <li class="font-bold mt-4">Exemplos:</li>
+                            <li>• Maioria dos animais</li>
+                            <li>• Plantas com flores</li>
+                            <li>• Muitos fungos</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Dados das perguntas do quiz (usados tanto para a aba "Exercícios" quanto para o "Jogo")
+        const quizQuestions = [
+            {
+                question: "Qual tipo de reprodução envolve a fusão de gametas?",
+                options: [
+                    "Reprodução Assexuada",
+                    "Reprodução Sexuada",
+                    "Brotamento",
+                    "Fragmentação"
+                ],
+                correctAnswer: "Reprodução Sexuada"
+            },
+            {
+                question: "Na reprodução assexuada, os descendentes são geneticamente:",
+                options: [
+                    "Diferentes dos genitores",
+                    "Idênticos aos genitores (clones)",
+                    "Uma mistura de características de dois genitores",
+                    "Sempre mais fortes que os genitores"
+                ],
+                correctAnswer: "Idênticos aos genitores (clones)"
+            },
+            {
+                question: "Qual é a principal vantagem da reprodução sexuada?",
+                options: [
+                    "Velocidade do processo",
+                    "Simplicidade do processo",
+                    "Produção de grande número de descendentes idênticos",
+                    "Geração de variabilidade genética"
+                ],
+                correctAnswer: "Geração de variabilidade genética"
+            },
+            {
+                question: "Bactérias e leveduras geralmente se reproduzem por qual método?",
+                options: [
+                    "Fecundação",
+                    "Brotamento ou Bipartição",
+                    "Formação de sementes",
+                    "Fragmentação"
+                ],
+                correctAnswer: "Brotamento ou Bipartição"
+            },
+            {
+                question: "A ausência de variabilidade genética em um ambiente em constante mudança é uma desvantagem de qual tipo de reprodução?",
+                options: [
+                    "Reprodução Sexuada",
+                    "Reprodução Assexuada",
+                    "Fecundação externa",
+                    "Reprodução por sementes"
+                ],
+                correctAnswer: "Reprodução Assexuada"
+            },
+            {
+                question: "Qual termo se refere às células reprodutoras (óvulo e espermatozoide)?",
+                options: [
+                    "Clones",
+                    "Zigotos",
+                    "Gametas",
+                    "Embriões"
+                ],
+                correctAnswer: "Gametas"
+            },
+            {
+                question: "Um exemplo de reprodução assexuada em plantas é:",
+                options: [
+                    "Polinização",
+                    "Formação de sementes",
+                    "Produção de frutos",
+                    "Reprodução por estacas"
+                ],
+                correctAnswer: "Reprodução por estacas"
+            },
+            {
+                question: "A fusão do óvulo com o espermatozoide é chamada de:",
+                options: [
+                    "Brotamento",
+                    "Fragmentação",
+                    "Bipartição",
+                    "Fecundação"
+                ],
+                correctAnswer: "Fecundação"
+            },
+            {
+                question: "Observe a imagem. Que tipo de reprodução ela representa?",
+                imageUrl: "biparticao.jpg", // Bipartição
+                options: [
+                    "Reprodução Sexuada",
+                    "Brotamento",
+                    "Bipartição",
+                    "Fragmentação"
+                ],
+                correctAnswer: "Bipartição"
+            },
+            {
+                question: "A imagem mostra um organismo gerando um novo indivíduo a partir de uma 'protuberância'. Qual processo é esse?",
+                imageUrl: "brotamento.png", // Brotamento
+                options: [
+                    "Fecundação",
+                    "Brotamento",
+                    "Divisão binária",
+                    "Reprodução por sementes"
+                ],
+                correctAnswer: "Brotamento"
+            },
+            {
+                question: "A imagem ilustra a união de duas células reprodutoras. Qual o nome desse processo?",
+                imageUrl: "fecundacao.png", // Fecundação
+                options: [
+                    "Brotamento",
+                    "Fragmentação",
+                    "Bipartição",
+                    "Fecundação"
+                ],
+                correctAnswer: "Fecundação"
+            }
+        ];
+
+        // Elementos do DOM
+        const introTab = document.getElementById('introTab');
+        const quizTab = document.getElementById('quizTab');
+        const gameTab = document.getElementById('gameTab');
+        const mindMapTab = document.getElementById('mindMapTab');
+
+        const introductionSection = document.getElementById('introduction');
+        const quizSection = document.getElementById('quiz');
+        const gameSection = document.getElementById('game');
+        const mindMapSection = document.getElementById('mindMap');
+
+        const quizForm = document.getElementById('quizForm');
+        const submitQuizBtn = document.getElementById('submitQuizBtn');
+        const quizResults = document.getElementById('quizResults');
+        const scoreSpan = document.getElementById('score');
+        const answersFeedbackDiv = document.getElementById('answersFeedback');
+
+        // Elementos do novo jogo de Quiz
+        let quizGameQuestionElement = document.getElementById('quizGameQuestion');
+        let quizGameImageContainer = document.getElementById('quizGameImageContainer');
+        let quizGameOptionsElement = document.getElementById('quizGameOptions');
+        const quizGameScoreSpan = document.getElementById('quizGameScore');
+        const quizGameIncorrectAnswersSpan = document.getElementById('quizGameIncorrectAnswers'); // Novo span para erros
+        const quizGameTotalQuestionsSpan = document.getElementById('quizGameTotalQuestions');
+        const resetGameBtn = document.getElementById('resetGameBtn');
+        const gameMessageElement = document.getElementById('gameMessage');
+        const quizGameMainContainer = document.getElementById('quizGameContainer'); // Referência ao container principal do jogo
+
+        let currentQuizGameQuestionIndex = 0;
+        let quizGameScore = 0; // Acertos
+        let quizGameIncorrectAnswers = 0; // Erros
+        let shuffledQuizGameQuestions = []; // Armazenará as perguntas com as respostas do utilizador
+
+        // Função para exibir mensagens do jogo
+        function showGameMessage(msg, type = 'info') {
+            if (gameMessageElement) {
+                gameMessageElement.textContent = msg;
+                gameMessageElement.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700', 'bg-blue-100', 'text-blue-700');
+                if (type === 'error') {
+                    gameMessageElement.classList.add('bg-red-100', 'text-red-700');
+                } else if (type === 'success') {
+                    gameMessageElement.classList.add('bg-green-100', 'text-green-700');
+                } else { // info
+                    gameMessageElement.classList.add('bg-blue-100', 'text-blue-700');
+                }
+                gameMessageElement.classList.remove('hidden');
+            }
+        }
+
+        // Função para esconder mensagens do jogo
+        function hideGameMessage() {
+            if (gameMessageElement) {
+                gameMessageElement.classList.add('hidden');
+            }
+        }
+
+        // Função para embaralhar um array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // --- Funções do Novo Jogo de Quiz ---
+
+        function startQuizGame() {
+            // Remove previous results container if it exists
+            const oldResults = document.getElementById('finalQuizResults');
+            if (oldResults) {
+                oldResults.remove();
+            }
+
+            // Ensure main game elements are visible and cleared for a new game
+            quizGameQuestionElement.textContent = '';
+            quizGameImageContainer.innerHTML = '';
+            quizGameOptionsElement.innerHTML = '';
+            quizGameMainContainer.style.display = 'flex'; // Garante que o container principal esteja visível
+
+            // Esconde o botão de reiniciar no início do jogo
+            resetGameBtn.classList.add('hidden');
+
+            // Cria uma cópia das perguntas e adiciona propriedades para rastrear a resposta do utilizador
+            shuffledQuizGameQuestions = shuffleArray(quizQuestions.map(q => ({
+                ...q,
+                userAnswer: null,
+                isCorrect: null
+            })));
+            currentQuizGameQuestionIndex = 0;
+            quizGameScore = 0;
+            quizGameIncorrectAnswers = 0;
+            quizGameTotalQuestionsSpan.textContent = shuffledQuizGameQuestions.length;
+            quizGameScoreSpan.textContent = quizGameScore;
+            quizGameIncorrectAnswersSpan.textContent = quizGameIncorrectAnswers;
+            hideGameMessage();
+            displayQuizQuestion();
+        }
+
+        function displayQuizQuestion() {
+            if (currentQuizGameQuestionIndex >= shuffledQuizGameQuestions.length) {
+                // Fim do jogo, mostrar resultados completos
+                showQuizGameResults();
+                return;
+            }
+
+            const questionData = shuffledQuizGameQuestions[currentQuizGameQuestionIndex];
+            quizGameQuestionElement.textContent = questionData.question;
+            quizGameOptionsElement.innerHTML = ''; // Limpa opções anteriores
+            quizGameImageContainer.innerHTML = ''; // Limpa imagem anterior
+
+            if (questionData.imageUrl) {
+                const img = document.createElement('img');
+                img.src = questionData.imageUrl; // Use o caminho correto para as imagens carregadas
+                img.alt = ``;
+                img.className = 'w-full h-auto max-h-48 object-contain rounded-lg mb-4 border border-gray-300';
+                quizGameImageContainer.appendChild(img);
+            }
+
+            const shuffledOptions = shuffleArray([...questionData.options]);
+
+            shuffledOptions.forEach(option => {
+                const optionButton = document.createElement('button');
+                optionButton.className = 'quiz-game-option-button';
+                optionButton.textContent = option;
+                optionButton.addEventListener('click', () => checkAnswer(optionButton, option, questionData.correctAnswer));
+                quizGameOptionsElement.appendChild(optionButton);
+            });
+
+            hideGameMessage(); // Esconde mensagens de feedback anteriores
+        }
+
+        function checkAnswer(selectedButton, selectedOption, correctAnswer) {
+            // Desabilita todos os botões de opção para evitar múltiplos cliques
+            document.querySelectorAll('.quiz-game-option-button').forEach(button => {
+                button.classList.add('disabled');
+                // Clonar o nó para remover o event listener de forma eficaz
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
+            });
+
+            // Armazena a resposta do utilizador e se está correta
+            shuffledQuizGameQuestions[currentQuizGameQuestionIndex].userAnswer = selectedOption;
+
+            if (selectedOption === correctAnswer) {
+                selectedButton.classList.add('correct');
+                quizGameScore++;
+                shuffledQuizGameQuestions[currentQuizGameQuestionIndex].isCorrect = true;
+                showGameMessage('Correto!', 'success'); // Removido o ícone
+            } else {
+                selectedButton.classList.add('incorrect');
+                quizGameIncorrectAnswers++;
+                shuffledQuizGameQuestions[currentQuizGameQuestionIndex].isCorrect = false;
+                showGameMessage('Errado.', 'error'); // Removido o ícone
+            }
+
+            quizGameScoreSpan.textContent = quizGameScore;
+            quizGameIncorrectAnswersSpan.textContent = quizGameIncorrectAnswers;
+
+            // Avança para a próxima pergunta após um pequeno atraso
+            setTimeout(() => {
+                currentQuizGameQuestionIndex++;
+                displayQuizQuestion();
+            }, 1000); // 1 segundo de atraso para o utilizador ver o feedback
+        }
+
+        // Função para mostrar os resultados completos ao final do jogo
+        function showQuizGameResults() {
+            quizGameQuestionElement.textContent = 'Resultados Finais do Quiz:';
+            quizGameImageContainer.innerHTML = ''; // Limpa imagem
+            quizGameOptionsElement.innerHTML = ''; // Limpa opções
+            hideGameMessage();
+
+            // Exibe o botão de reiniciar
+            resetGameBtn.classList.remove('hidden');
+
+            const resultsContainer = document.createElement('div');
+            resultsContainer.id = 'finalQuizResults'; // Adiciona um ID para fácil remoção
+            resultsContainer.className = 'w-full max-w-2xl space-y-4 mt-8 mx-auto'; // Centraliza e adiciona margem
+
+            shuffledQuizGameQuestions.forEach((q, index) => {
+                const resultItem = document.createElement('div');
+                resultItem.className = `p-4 rounded-lg shadow-sm border ${q.isCorrect ? 'bg-green-100 border-green-300' : 'bg-red-100 border-red-300'}`;
+
+                let statusText = q.isCorrect ? '(Correto)' : '(Incorreto)';
+                let userAnswerText = q.userAnswer || 'Nenhuma resposta';
+
+                resultItem.innerHTML = `
+                    <p class="font-bold text-lg text-gray-900">Pergunta ${index + 1}: ${q.question}</p>
+                    ${q.imageUrl ? `<img src="${q.imageUrl}" alt="" class="w-full h-auto max-h-32 object-contain rounded-lg my-2 border border-gray-300">` : ''}
+                    <p class="text-gray-700">Sua resposta: <span class="${q.isCorrect ? 'text-green-700' : 'text-red-700'} font-semibold">${userAnswerText}</span> ${statusText}</p>
+                    <p class="text-gray-700">Resposta correta: <span class="text-green-700 font-semibold">${q.correctAnswer}</span></p>
+                `;
+                resultsContainer.appendChild(resultItem);
+            });
+            // Adiciona o container de resultados ao quizGameContainer
+            quizGameMainContainer.appendChild(resultsContainer);
+        }
+
+
+        // --- Funções da Aba "Exercícios" (Quiz Antigo) ---
+        function renderQuiz() {
+            quizForm.innerHTML = ''; // Limpa perguntas anteriores
+            quizQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'bg-white p-5 rounded-xl shadow-md border border-gray-200'; // Estilo de card para a pergunta
+
+                let imageHtml = '';
+                if (q.imageUrl) {
+                    imageHtml = `<img src="${q.imageUrl}" alt="" class="w-full h-auto max-h-48 object-contain rounded-lg mb-4 border border-gray-300">`; // Imagem responsiva
+                }
+
+                questionDiv.innerHTML = `
+                    ${imageHtml}
+                    <p class="text-lg font-semibold text-gray-900 mb-4">${index + 1}. ${q.question}</p>
+                    <div class="space-y-3">
+                        ${q.options.map(option => `
+                            <label class="flex items-center text-gray-700 cursor-pointer p-2 rounded-md hover:bg-gray-100 transition duration-150 ease-in-out">
+                                <input type="radio" name="question${index}" value="${option}" class="form-radio h-5 w-5 text-blue-600 focus:ring-blue-500 cursor-pointer">
+                                <span class="ml-3 text-base">${option}</span>
+                            </label>
+                        `).join('')}
+                    </div>
+                `;
+                quizForm.appendChild(questionDiv);
+            });
+        }
+
+        // Função para verificar as respostas do quiz (aba "Exercícios")
+        function submitQuiz() {
+            let score = 0;
+            answersFeedbackDiv.innerHTML = ''; // Limpa feedback anterior
+
+            quizQuestions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'p-4 rounded-lg shadow-sm';
+
+                if (selectedOption && selectedOption.value === q.correctAnswer) {
+                    score++;
+                    feedbackDiv.classList.add('bg-green-100', 'text-green-800', 'border', 'border-green-300');
+                    feedbackDiv.innerHTML = `
+                        <p class="font-bold">Pergunta ${index + 1}: <span class="text-green-600">Correta! &#10003;</span></p>
+                        <p class="text-sm">Sua resposta: "${selectedOption.value}"</p>
+                    `;
+                } else {
+                    feedbackDiv.classList.add('bg-red-100', 'text-red-800', 'border', 'border-red-300');
+                    feedbackDiv.innerHTML = `
+                        <p class="font-bold">Pergunta ${index + 1}: <span class="text-red-600">Errada. &#10007;</span></p>
+                        <p class="text-sm">Sua resposta: "${selectedOption ? selectedOption.value : 'Nenhuma resposta'}"</p>
+                        <p class="text-sm">Resposta correta: "${q.correctAnswer}"</p>
+                    `;
+                }
+                answersFeedbackDiv.appendChild(feedbackDiv);
+            });
+
+            scoreSpan.textContent = `${score} de ${quizQuestions.length}`;
+            quizResults.classList.remove('hidden-section'); // Mostra a área de resultados
+            quizResults.scrollIntoView({ behavior: 'smooth' }); // Rola para os resultados
+        }
+
+        // --- Gerenciamento de Abas ---
+        function showSection(sectionId) {
+            // Esconde todas as seções
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden-section');
+            });
+            // Remove a classe 'tab-active' de todas as abas
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('tab-active');
+            });
+
+            // Mostra a seção desejada e ativa a aba correspondente
+            if (sectionId === 'introduction') {
+                introductionSection.classList.remove('hidden-section');
+                introTab.classList.add('tab-active');
+            } else if (sectionId === 'quiz') {
+                quizSection.classList.remove('hidden-section');
+                quizTab.classList.add('tab-active');
+                renderQuiz(); // Renderiza o quiz sempre que a aba é acessada
+                quizResults.classList.add('hidden-section'); // Esconde resultados anteriores
+                quizForm.reset(); // Limpa as respostas anteriores
+            } else if (sectionId === 'game') {
+                gameSection.classList.remove('hidden-section');
+                gameTab.classList.add('tab-active');
+                startQuizGame(); // Inicia o novo quiz game quando a aba é acessada
+            } else if (sectionId === 'mindMap') {
+                mindMapSection.classList.remove('hidden-section');
+                mindMapTab.classList.add('tab-active');
+            }
+        }
+
+        // Adiciona event listeners para os botões das abas
+        introTab.addEventListener('click', () => showSection('introduction'));
+        quizTab.addEventListener('click', () => showSection('quiz'));
+        gameTab.addEventListener('click', () => showSection('game'));
+        mindMapTab.addEventListener('click', () => showSection('mindMap'));
+
+        // Adiciona event listener para o botão de submissão do quiz (aba "Exercícios")
+        submitQuizBtn.addEventListener('click', submitQuiz);
+
+        // Adiciona event listener para o botão de reiniciar do novo jogo de Quiz
+        resetGameBtn.addEventListener('click', startQuizGame);
+
+        // Inicializa o aplicativo mostrando a seção de introdução
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('introduction');
+        });
+    </script>
+</body>
+</html>
